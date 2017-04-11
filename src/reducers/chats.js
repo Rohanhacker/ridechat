@@ -1,11 +1,14 @@
 import * as types from '../actions/types'
 
-export const chats = (state = {}, { type, payload}) => {
+export const chats = (state = [], { type, payload}) => {
     switch (type) {
         case types.SENDMESSAGE:
-            return Object.assign(state, payload)
+            let o = Object.keys(payload).map(function (key) { return payload[key]; })
+            return o
         case types.NEWMESSAGE:
-            return Object.assign(state, payload)
+            let k = Object.keys(payload).map(function (key) { return payload[key]; })
+            console.log(k)
+            return k
         default:
             return state
     }

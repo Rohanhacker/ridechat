@@ -7,7 +7,6 @@ export default class Chats extends Component {
         title: 'Chats'
     }
     render() {
-        console.log(this.props.navigation.state.params)
         return (
             <View>
                 <Text>Hello</Text>

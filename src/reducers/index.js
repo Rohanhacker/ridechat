@@ -10,5 +10,6 @@ export default combineReducers({
     user,
     find,
     destination,
-    peers
+    peers,
+    chats
 })

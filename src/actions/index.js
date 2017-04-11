@@ -90,7 +90,6 @@ export const fetchMessages = (uid) => {
     return (dispatch) => {
         let ref = firebase.database().ref(firebase.auth().currentUser.uid)
         ref.on('value', (snapshot) => {
-            console.warn(snapshot.val())
             dispatch({
                 type: types.NEWMESSAGE,
                 payload: snapshot.val()

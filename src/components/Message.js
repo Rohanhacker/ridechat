@@ -2,8 +2,12 @@ import React , { Component } from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { connect } from 'react-redux'
 import { fetchMessages } from '../actions/index'
+import firebase from '../firebase'
 
 class Messages extends Component {
+    static navigationOptions = {
+        title: 'chat'
+    }
   constructor(props) {
     super(props)
     this.state = {messages: []}
@@ -39,6 +43,21 @@ class Messages extends Component {
     })
   }
   onSend(messages = []) {
+    console.log(messages)
+    let temp = {
+      user: {
+        name: firebase.auth().currentUser.displayName || 'rohan',
+        avatar: firebase.auth().currentUser.photoURL || 'http://static.tvtropes.org/pmwiki/pub/images/L__fancel__from_Death_Note_by_escaf.jpg'
+      }
+    }
+    let ownmsg = Object.assign(messages[0], temp)
+    let othermsg = messages[0]
+    othermsg.user._id = 1
+    let key = firebase.database().ref(firebase.auth().currentUser.uid).push().key
+    let ref = firebase.database().ref(`${firebase.auth().currentUser.uid}/${key}`)
+    ref.set(ownmsg)
+    ref = firebase.database().ref(`${this.props.navigation.state.params.key}/${key}`)
+    ref.set(othermsg)
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),
@@ -46,10 +65,11 @@ class Messages extends Component {
     })
   }
   render() {
-      console.log(this.state)
+    let texts = this.props.chats
+    // will add a filter here
     return (
       <GiftedChat
-        messages={this.state.messages}
+        messages={texts}
         onSend={this.onSend}
         user={{
           _id: 1,
