@@ -1,11 +1,16 @@
 import React , { Component } from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
+import { connect } from 'react-redux'
+import { fetchMessages } from '../actions/index'
 
-export default class Messages extends Component {
+class Messages extends Component {
   constructor(props) {
     super(props)
     this.state = {messages: []}
     this.onSend = this.onSend.bind(this)
+  }
+  componentDidMount() {
+      this.props.dispatch(fetchMessages(this.props.navigation.state.params.key))
   }
   componentWillMount() {
     this.setState({
@@ -53,3 +58,9 @@ export default class Messages extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+    chats: state.chats
+})
+
+export default connect(mapStateToProps)(Messages)
