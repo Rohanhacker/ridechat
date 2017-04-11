@@ -35,7 +35,6 @@ class Login extends Component {
         })
     }
     render() {
-        AsyncStorage.getAllKeys((e,a) => console.log(a))
         if(!this.props.user.email) {
             return (
                 <View style={styles.container} onLayout={this.onChangeLayout}>

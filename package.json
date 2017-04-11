@@ -8,9 +8,12 @@
 	},
 	"dependencies": {
 		"firebase": "^3.7.5",
+		"geofire": "^4.1.2",
 		"native-base": "^2.1.1",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.43.2",
+		"react-native-gifted-chat": "^0.1.4",
+		"react-native-keyboard-aware-scroll-view": "^0.2.8",
 		"react-native-radio-buttons": "^0.14.0",
 		"react-native-vector-icons": "^4.0.1",
 		"react-navigation": "git+https://github.com/react-community/react-navigation.git#7edd9a7",
