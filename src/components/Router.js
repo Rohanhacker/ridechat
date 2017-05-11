@@ -4,6 +4,7 @@ import Chats from './chats'
 import Find from './find'
 import Profile from './profile'
 import Message from './Message'
+import Logout from './logout'
 
 export const Chat = StackNavigator({
     List: {
@@ -20,5 +21,8 @@ export const Main = TabNavigator({
     },
     Chat: {
         screen: Chat
+    },
+    Profile: {
+        screen: Logout
     }
 })

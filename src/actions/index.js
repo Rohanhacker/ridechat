@@ -30,6 +30,10 @@ export const setDestination = (loc) => {
     return {type: types.SET_DESTINATION, payload: loc}
 }
 
+export const Logout = () => {
+    return {type: types.LOGOUT, payload: null}
+}
+
 export const findPeers = (destination,coordinates,type) => {
 
     return (dispatch) => {

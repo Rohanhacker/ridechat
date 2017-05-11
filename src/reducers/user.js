@@ -6,6 +6,8 @@ export const user = (state = {}, { type, payload}) => {
             return payload
         case types.LOGIN_ERROR:
             return payload
+        case types.LOGOUT:
+            return {}
         default:
             return state
     }
