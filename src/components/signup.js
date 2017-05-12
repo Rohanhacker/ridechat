@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, AsyncStorage } from 'react-native'
 import { Button} from 'native-base'
 import { connect } from 'react-redux'
-import { doLogin } from '../actions/index'
-import { Main } from './Router'
-import Signup from './signup'
-import { NavigationActions } from 'react-navigation'
 
-class Login extends Component {
+class Signup extends Component {
     constructor() {
         super()
         this.state = {
+            name: '',
             username: '',
             password: '',
             width: 0,
@@ -24,7 +21,7 @@ class Login extends Component {
         })
     }
     onPress = (e) => {
-        this.props.dispatch(doLogin(this.state.username,this.state.password))
+        console.warn(this.state)
     }
     onUsername = (e) => {
         this.setState({
@@ -36,15 +33,22 @@ class Login extends Component {
             password: e
         })
     }
+    onName = (e) => {
+        this.setState({
+            name: e
+        })
+    }
     render() {
-        if(!this.props.user.email) {
             return (
                 <View style={styles.container} onLayout={this.onChangeLayout}>
                     <Image source={require('../../bg.jpeg')} style={[styles.imgContainer,{height: this.state.height},{width: this.state.width}]}>
                         <Text style={styles.branding}>rideChat</Text>
                         <View style={styles.formContainer}>
                             <View style={styles.usernameInput}>
-                                <TextInput value={this.state.username} onChangeText={this.onUsername} style={styles.input} placeholder='Username or Email'/>
+                                <TextInput value={this.state.name} onChangeText={this.onName} style={styles.input} placeholder='Name'/>
+                            </View>
+                            <View style={styles.usernameInput}>
+                                <TextInput value={this.state.username} onChangeText={this.onUsername} style={styles.input} placeholder='Email'/>
                             </View>
                             <View style={styles.usernameInput}>
                                 <TextInput value={this.state.password} onChangeText={this.onPassword} style={styles.input} secureTextEntry  placeholder='Password'/>
@@ -52,23 +56,19 @@ class Login extends Component {
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={this.onPress}>
                                     <View style={styles.loginBtn}>
-                                        <Text style={styles.login}>LogIn</Text>
+                                        <Text style={styles.login}>Register</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <Text style={{color: 'white'}}>or</Text>
-                                <TouchableOpacity>
-                                    <Text style={styles.signup}>Signup</Text>
+                                <TouchableOpacity onPress={this.onPress}>
+                                    <View style={styles.loginBtn}>
+                                        <Text style={styles.login}>Back</Text>
+                                    </View>
                                 </TouchableOpacity>
                             </View>
                         </View>
                     </Image>
                 </View>
             )
-        } else {
-            return (
-                <Main />
-            )
-        }
     }
 }
 
@@ -122,9 +122,4 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = (state) => ({
-    user: state.user
-})
-
-
-export default connect(mapStateToProps)(Login)
+export default Signup

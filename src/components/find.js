@@ -46,7 +46,7 @@ class Find extends Component {
                     }
                 },
                 (error) => alert(JSON.stringify(error)),
-                {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+                {timeout: 20000, maximumAge: 1000}
             )
         }
     }

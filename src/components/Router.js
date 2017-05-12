@@ -5,6 +5,8 @@ import Find from './find'
 import Profile from './profile'
 import Message from './Message'
 import Logout from './logout'
+import Signup from './signup'
+import Login from './login'
 
 export const Chat = StackNavigator({
     List: {
@@ -12,6 +14,12 @@ export const Chat = StackNavigator({
     },
     Message: {
         screen: Message
+    }
+})
+
+export const Home = StackNavigator({
+    Signup: {
+        screen: Signup
     }
 })
 
